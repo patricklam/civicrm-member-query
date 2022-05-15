@@ -85,8 +85,12 @@
             if ($contactID != 0){ // Match found!
                 // TODO: Find memberships associated with contact and their expiry dates
                 
-                $result = civicrm_api3('Membership', 'get', ['sequential' => 1, 'contact_id' => $contactID, ]);
-                echo $result
+                // $result = civicrm_api3('Membership', 'get', ['sequential' => 1, 'contact_id' => $contactID, ]);
+                
+                $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=membership&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&contact_id=' . $contactID;
+                $contents = get_xml_from_url($url);
+
+                echo $contents
             }
             
         } else {
