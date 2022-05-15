@@ -34,7 +34,7 @@
         <br><br>
         
         <label>Membership ID<br><label>
-        <input type="text" name="membershipID" value="<?php echo #membershipID;?>">
+        <input type="text" name="membershipID" value="<?php echo $membershipID;?>">
         
         <input type="submit" name="submit" value="Submit">  
     </form>
