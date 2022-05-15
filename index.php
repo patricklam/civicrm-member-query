@@ -64,6 +64,8 @@
         $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=contact&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&last_name=Lam';
         $contents = get_xml_from_url($url);
         
+        echo $contents;
+        
         /*  Wondering if this is reliant on the User Api key being logged in to a specific account...
 
         $contactxml = simplexml_load_string($contents);
