@@ -67,9 +67,9 @@
         
         $contactID = 0;
 
-        if (count($contactxml->children() != "")) {
+        if ($contactxml != "")) {
             foreach ($contactxml->children() as $contact) {
-                echo "<li>" . $contact->display_name . "</li>";
+                echo  "<h2>" . $contact->display_name . "</h2>";
                 
                 /*  Fewer queries done to CivicRM if we give a membership ID, compared to email address.  The email address is stored on the
                     contact ID and not the contact itself.
