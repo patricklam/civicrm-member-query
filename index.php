@@ -42,9 +42,38 @@
     <hr class="rounded">
 
  <?php 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        echo '<p>Hello ' . $surname . ' from ' . $email; 
+    include 'secrets.php';
+
+    function get_xml_from_url($url){
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+
+        $xmlstr = curl_exec($ch);
+        curl_close($ch);
+
+        return $xmlstr;
     }
+            
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        echo '<p>Searching for ' . $surname . ' from ' . $email; 
+        
+        $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=contact&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&last_name=' . $surname;
+        $contents = get_xml_from_url($url);
+
+        $contactxml = simplexml_load_string($contents);
+
+        if (count($contactxml->children() > 0) {
+            foreach ($contactxml->children() as $contact) {
+                echo "<li>" . $contact->display_name . "</li>";
+            }
+        } else {
+            echo "No match found for " . $surname . "<p>";
+        }
+    }
+
 
  ?> 
 </body>
