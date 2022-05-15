@@ -14,11 +14,11 @@
     
  <?php   
      // define variables and set to empty values
-    $surname = $email = "";
+    $surname = $membershipID = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $surname = $_POST["surname"];
-        $email = $_POST["email"];
+        $membershipID = $_POST["membershipID"];
     }
  ?> 
     
@@ -33,8 +33,8 @@
             
         <br><br>
         
-        <label>Email<br><label>
-        <input type="text" name="email" value="<?php echo $email;?>">
+        <label>Membership ID<br><label>
+        <input type="text" name="membershipID" value="<?php echo membershipID;?>">
         
         <input type="submit" name="submit" value="Submit">  
     </form>
@@ -58,7 +58,7 @@
     }
             
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        echo '<p>Searching for ' . $surname . ' from ' . $email; 
+        echo '<p>Searching for ' . $surname . ' from ' . $membershipID; 
         
         
         $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=contact&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&last_name=' . $surname;
@@ -76,7 +76,7 @@
                     contact ID and not the contact itself.
                 */
                 
-                if ($contact->id == $email){
+                if ($contact->id == $membershipID){
                     echo "MATCH FOUND <p>";
                     $contactID = $contact->id;
                     break;
