@@ -67,38 +67,35 @@
         
         $contactID = 0;
 
-        if ($contactxml != "")) {
-            foreach ($contactxml->children() as $contact) {
-                echo  "<h2>" . $contact->display_name . "</h2>";
+        foreach ($contactxml->children() as $contact) {
+            echo  "<h2>" . $contact->display_name . "</h2>";
                 
-                /*  Fewer queries done to CivicRM if we give a membership ID, compared to email address.  The email address is stored on the
-                    contact ID and not the contact itself.
-                */
+            /*  Fewer queries done to CivicRM if we give a membership ID, compared to email address.  The email address is stored on the
+                contact ID and not the contact itself.
+            */
                 
-                if ($contact->id == $membershipID){
-                    // Match Found!
-                    $contactID = $contact->id;
-                    break;
+            if ($contact->id == $membershipID){
+                // Match Found!
+                $contactID = $contact->id;
+                break;
+            }
+        }
+            
+        if ($contactID != 0){ 
+            // Find memberships associated with contact and their expiry dates
+               
+            $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=membership&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&contact_id=' . $contactID;
+            $contents = get_xml_from_url($url);
+            $membershipxml = simplexml_load_string($contents);
+                
+            // Allowing the possibility of showing multiple memberships
+            foreach ($membershipxml->children() as $membership) {
+                if ($membership->membership_type_id == 1) {
+                    echo "<li>Regular $5 lifetime membership member </li>";
+                } else {
+                    echo "<li>" . $membership->membership_name . " Membership, expires on " . $membership->end_date . "</li>";
                 }
             }
-            
-            if ($contactID != 0){ 
-                // Find memberships associated with contact and their expiry dates
-                
-                $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=membership&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&contact_id=' . $contactID;
-                $contents = get_xml_from_url($url);
-                $membershipxml = simplexml_load_string($contents);
-                
-                // Allowing the possibility of showing multiple memberships
-                foreach ($membershipxml->children() as $membership) {
-                    if ($membership->membership_type_id == 1) {
-                        echo "<li>Regular $5 lifetime membership member </li>";
-                    } else {
-                        echo "<li>" . $membership->membership_name . " Membership, expires on " . $membership->end_date . "</li>";
-                    }
-                }
-            }
-            
         } else {
             echo "Error: No match found for " . $surname . " with Membership ID " . $membershipID . "<p>";
         }
