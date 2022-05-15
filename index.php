@@ -9,29 +9,30 @@
 <h1>CiviCRM member query tool</h1>
     
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-<form>
-<div class="rendered-form">
-    <div class="">
-        <h1 access="false" id="control-8055192">Member Information<br></h1></div>
-    <div class="formbuilder-text form-group field-text-1652631804163">
-        <label for="text-1652631804163" class="formbuilder-text-label">Last name
-            <br>
-        </label>
-        <input type="text" class="form-control" name="text-1652631804163" access="false" id="text-1652631804163">
-    </div>
-    <div class="formbuilder-text form-group field-text-1652631820544">
-        <label for="text-1652631820544" class="formbuilder-text-label">Email address
-            <br>
-        </label>
-        <input type="text" class="form-control" name="text-1652631820544" access="false" id="text-1652631820544">
-    </div>
-    <div class="formbuilder-button form-group field-button-1652631837931">
-        <button type="button" class="btn-default btn" name="button-1652631837931" access="false" style="default" id="button-1652631837931">Validate</button>
-    </div>
-</div>
+  
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+  <label>Last Name<br><label>
+      <input type="text" name="name" value="">
+  <br><br>
+  <label>Email<br><label>
+      <input type="text" name="email" value="">
+  <input type="submit" name="submit" value="Submit">  
 </form>
 
- <?php echo '<p>Hello World</p>'; ?> 
+ <?php 
+    
+      
+     // define variables and set to empty values
+    $surname = $email = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = $_POST["surname"];
+        $email = $_POST["email"];
+    }
+      
+    echo '<p>Hello ' . $name . ' from ' . $email; 
+
+}
+ ?> 
 </body>
 </html>
