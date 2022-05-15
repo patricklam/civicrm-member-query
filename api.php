@@ -35,7 +35,7 @@
 <ul>
 <?php
 include 'secrets.php';
-$contactxml = simplexml_load_file("https://" . SITE . "/sites/all/modules/civicrm/extern/rest.php?entity=contact&action=get&key=" . SERVER_API_KEY . "&api_key=" . USER_API_KEY . "&last_name=Lam");
+$contactxml = simplexml_load_file("https://" . SITE . "/wp-json/civicrm/v3/rest?entity=contact&action=get&key=" . SERVER_API_KEY . "&api_key=" . USER_API_KEY . "&last_name=Lam");
 foreach ($contactxml->children() as $contact) {
     echo "<li>" . $contact->display_name . "</li>";
 }
