@@ -60,7 +60,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<p>Searching for ' . $surname . ' from ' . $email; 
         
-        $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=contact&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&last_name=' . $surname;
+        $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=contact&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&last_name=Lam';
         $contents = get_xml_from_url($url);
 
         $contactxml = simplexml_load_string($contents);
