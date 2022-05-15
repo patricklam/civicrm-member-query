@@ -84,7 +84,9 @@
             }
             if ($contactID != 0){ // Match found!
                 // TODO: Find memberships associated with contact and their expiry dates
-
+                
+                $result = civicrm_api3('Membership', 'get', ['sequential' => 1, 'contact_id' => $contactID, ]);
+                echo $result
             }
             
         } else {
