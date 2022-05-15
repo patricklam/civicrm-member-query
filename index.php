@@ -20,19 +20,17 @@
 </form>
 
  <?php 
-    
-      
+          
      // define variables and set to empty values
     $surname = $email = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $_POST["surname"];
         $email = $_POST["email"];
-    };
+    }
       
     echo '<p>Hello ' . $name . ' from ' . $email; 
 
-}
  ?> 
 </body>
 </html>
