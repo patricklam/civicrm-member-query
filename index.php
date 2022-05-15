@@ -66,7 +66,7 @@
 
         $contactxml = simplexml_load_string($contents);
         
-        echo contactxml;
+        echo $contactxml;
         
         $contactID = 0;
 
