@@ -65,8 +65,6 @@
         $contents = get_xml_from_url($url);
         
         echo $contents;
-        
-        /*  Wondering if this is reliant on the User Api key being logged in to a specific account...
 
         $contactxml = simplexml_load_string($contents);
 
@@ -78,7 +76,6 @@
             echo "No match found for " . $surname . "<p>";
         }
         
-        */
     }
 
 
