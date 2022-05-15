@@ -68,7 +68,7 @@
 
         $contactxml = simplexml_load_string($contents);
 
-        if (count($contactxml->children() > 0) {
+        if (count($contactxml->children() > 0)) {
             foreach ($contactxml->children() as $contact) {
                 echo "<li>" . $contact->display_name . "</li>";
             }
