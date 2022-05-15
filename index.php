@@ -83,16 +83,21 @@
                 }
             }
             if ($contactID != 0){ // Match found!
-                // TODO: Find memberships associated with contact and their expiry dates
+                // Find memberships associated with contact and their expiry dates
                 
                 // $result = civicrm_api3('Membership', 'get', ['sequential' => 1, 'contact_id' => $contactID, ]);
                 
                 $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=membership&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&contact_id=' . $contactID;
                 $contents = get_xml_from_url($url);
-
                 $membershipxml = simplexml_load_string($contents);
+                
+                // Allowing the possibility of showing multiple memberships
                 foreach ($membershipxml->children() as $membership) {
-                    echo "<li>" . $membership->membership_name . " expires on " . $membership->end_date . "</li>";
+                    if ($membership->membership_type_id == 1) {
+                        echo "<li>Regular $5 lifetime membership member </li>";
+                    } else {
+                        echo "<li>" . $membership->membership_name . " Membership, expires on " . $membership->end_date . "</li>";
+                    }
                 }
             }
             
