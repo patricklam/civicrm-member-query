@@ -63,17 +63,32 @@
         
         $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=contact&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&last_name=' . $surname;
         $contents = get_xml_from_url($url);
-        
-        echo $contents;
 
         $contactxml = simplexml_load_string($contents);
+        
+        $contactID = 0;
 
         if (count($contactxml->children() > 0)) {
             foreach ($contactxml->children() as $contact) {
                 echo "<li>" . $contact->display_name . "</li>";
+                
+                /*  Fewer queries done to CivicRM if we give a membership ID, compared to email address.  The email address is stored on the
+                    contact ID and not the contact itself.
+                */
+                
+                if ($contact->id == $email){
+                    echo "MATCH FOUND <p>";
+                    $contactID = $contact->id;
+                    break;
+                }
             }
+            if ($contactID != 0){ // Match found!
+                // TODO: Find memberships associated with contact and their expiry dates
+
+            }
+            
         } else {
-            echo "No match found for " . $surname . "<p>";
+            echo "No match found for " . $surname . "<p>"; // Not hit, might have to check something else later
         }
         
     }
