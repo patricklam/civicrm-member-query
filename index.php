@@ -91,7 +91,7 @@
             // Allowing the possibility of showing multiple memberships
             foreach ($membershipxml->children() as $membership) {
                 if ($membership->membership_type_id == 1) {
-                    echo "<li>Regular $5 lifetime membership member </li>";
+                    echo "<li>Regular $5 lifetime membership </li>";
                 } else {
                     echo "<li>" . $membership->membership_name . " Membership, expires on " . $membership->end_date . "</li>";
                 }
