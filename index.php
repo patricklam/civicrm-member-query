@@ -90,7 +90,7 @@
                 $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=membership&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&contact_id=' . $contactID;
                 $contents = get_xml_from_url($url);
 
-                echo $contents
+                echo $contents;
             }
             
         } else {
