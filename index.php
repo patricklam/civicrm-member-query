@@ -12,10 +12,10 @@
   
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
   <label>Last Name<br><label>
-      <input type="text" name="surname" value="">
+      <input type="text" name="surname" value="<?php echo $surname;?>">
   <br><br>
   <label>Email<br><label>
-      <input type="text" name="email" value="">
+      <input type="text" name="email" value="<?php echo $email;?>">
   <input type="submit" name="submit" value="Submit">  
 </form>
 
