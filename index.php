@@ -58,9 +58,6 @@
     }
             
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        echo '<p>Searching for ' . $surname . ' from ' . $membershipID; 
-        
-        
         $url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=contact&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&last_name=' . $surname;
         $contents = get_xml_from_url($url);
 
@@ -70,7 +67,7 @@
         
         $contactID = 0;
 
-        if (count($contactxml->children() > 0)) {
+        if (count($contactxml->children() != "")) {
             foreach ($contactxml->children() as $contact) {
                 echo "<li>" . $contact->display_name . "</li>";
                 
@@ -103,7 +100,7 @@
             }
             
         } else {
-            echo "No match found for " . $surname . "<p>"; // Not hit, might have to check something else later
+            echo "Error: No match found for " . $surname . " with Membership ID " . $membershipID . "<p>";
         }
         
     }
