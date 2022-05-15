@@ -28,7 +28,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $_POST["surname"];
         $email = $_POST["email"];
-    }
+    };
       
     echo '<p>Hello ' . $name . ' from ' . $email; 
 
