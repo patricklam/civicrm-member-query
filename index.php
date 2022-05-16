@@ -67,6 +67,8 @@
         
         $contactID = 0;
 
+        // TODO: Remove all trailing whitespace, ignore case (currently names will match with mismatched cases, but email won't). 
+        // Also double check punctuation for names with hyphens and/or accents.
         foreach ($contactxml->children() as $contact) {          
             if ($contact->email == $email){
                 // Match Found!
