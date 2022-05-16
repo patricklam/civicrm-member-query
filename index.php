@@ -75,6 +75,9 @@
             if ($contact->id == $membershipID){
                 // Match Found!
                 echo  "<h2>" . $contact->display_name . "</h2>";
+                
+                echo $contact->email . "<p>";
+                
                 $contactID = $contact->id;
                 break;
             }
