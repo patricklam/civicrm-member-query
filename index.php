@@ -14,11 +14,11 @@
     
  <?php   
      // define variables and set to empty values
-    $surname = $membershipID = "";
+    $surname = $email = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $surname = $_POST["surname"];
-        $membershipID = $_POST["membershipID"];
+        $email = $_POST["email"];
     }
  ?> 
     
@@ -32,9 +32,9 @@
         <input type="text" name="surname" value="<?php echo $surname;?>">
             
         <br><br>
-        
-        <label>Membership ID<br><label>
-        <input type="text" name="membershipID" value="<?php echo $membershipID;?>">
+            
+        <label>Email<br><label>
+        <input type="text" name="email" value="<?php echo $email;?>">
         
         <input type="submit" name="submit" value="Submit">  
     </form>
@@ -67,15 +67,10 @@
         
         $contactID = 0;
 
-        foreach ($contactxml->children() as $contact) {             
-            /*  Fewer queries done to CivicRM if we give a membership ID, compared to email address.  The email address is stored on the
-                contact ID and not the contact itself.
-            */
-                
-            if ($contact->id == $membershipID){
+        foreach ($contactxml->children() as $contact) {          
+            if ($contact->email == $email){
                 // Match Found!
-                echo  "<h2>" . $contact->display_name . "</h2>";
-                
+                echo  "<h2>" . $contact->display_name . "</h2>";                
                 echo $contact->email . "<p>";
                 
                 $contactID = $contact->id;
@@ -99,7 +94,7 @@
                 }
             }
         } else {
-            echo "Error: No match found for " . $surname . " with Membership ID " . $membershipID . "<p>";
+            echo "Error: No match found for " . $surname . " with email " . $email . "<p>";
         }
         
     }
