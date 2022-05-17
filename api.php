@@ -49,7 +49,7 @@ function get_xml_from_url($url){
     return $xmlstr;
 }
 
-$url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=contact&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&last_name=Lam';
+$url = 'https://' . SITE . '/wp-json/civicrm/v3/rest?entity=contact&action=get&key=' . SERVER_API_KEY . '&api_key=' . USER_API_KEY . '&last_name=Lam&first_name=Patrick';
 $contents = get_xml_from_url($url);
 
 $contactxml = simplexml_load_string($contents);
