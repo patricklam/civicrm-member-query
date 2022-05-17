@@ -1,15 +1,16 @@
-include 'secrets.php'
+<?php
 require __DIR__ . '/vendor/autoload.php';
 
 use League\OAuth2\Client\Provider\Google;
 
 session_start(); // Remove if session.auto_start=1 in php.ini
 
+include 'secrets.php';
 $provider = new Google([
     'clientId'     => GOOGLE_CLIENT_ID,
     'clientSecret' => GOOGLE_CLIENT_SECRET,
     'redirectUri'  => 'https://oac-dev2.patricklam.ca/oauth.php',
-    'hostedDomain' => '', // optional; used to restrict access to users on your G Suite/Google Apps for Business accounts
+//    'hostedDomain' => '', // optional; used to restrict access to users on your G Suite/Google Apps for Business accounts
 ]);
 
 if (!empty($_GET['error'])) {
@@ -45,8 +46,8 @@ if (!empty($_GET['error'])) {
         $ownerDetails = $provider->getResourceOwner($token);
 
         // Use these details to create a new profile
-        printf('Hello %s!', $ownerDetails->getFirstName());
-        printf('email address is %s!', $ownerDetails->getEmail());
+        printf('Hello %s!', $ownerDetails->getFirstName()); printf('<br>');
+        printf('email address is %s!', $ownerDetails->getEmail()); printf('<br>');
 
     } catch (Exception $e) {
 
@@ -56,11 +57,13 @@ if (!empty($_GET['error'])) {
     }
 
     // Use this to interact with an API on the users behalf
-    echo $token->getToken();
+    // echo $token->getToken();
 
     // Use this to get a new access token if the old one expires
-    echo $token->getRefreshToken();
+    // echo $token->getRefreshToken();
 
     // Unix timestamp at which the access token expires
-    echo $token->getExpires();
+    echo 'Token expires at ' . $token->getExpires();
 }
+?>
+

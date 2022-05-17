@@ -4,12 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitaf07d7e81e19e91e0efa6737ad6d22fa
+class ComposerStaticInit31d5af114e4ef8ee2e5194459e2b0290
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
@@ -67,9 +67,9 @@ class ComposerStaticInitaf07d7e81e19e91e0efa6737ad6d22fa
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitaf07d7e81e19e91e0efa6737ad6d22fa::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitaf07d7e81e19e91e0efa6737ad6d22fa::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitaf07d7e81e19e91e0efa6737ad6d22fa::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit31d5af114e4ef8ee2e5194459e2b0290::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit31d5af114e4ef8ee2e5194459e2b0290::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit31d5af114e4ef8ee2e5194459e2b0290::$classMap;
 
         }, null, ClassLoader::class);
     }
